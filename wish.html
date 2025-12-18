@@ -217,7 +217,7 @@ function heartBurst(){
   }, 300);
 </script>
 <audio id="bgSong" loop>
-  <source src="song.mp3" type="audio/mpeg">
+  <source src="nadaniya.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -226,6 +226,17 @@ function heartBurst(){
   }
 </script>
 
+<script>
+  window.addEventListener("load", () => {
+    const song = document.getElementById("bgSong");
+    song.volume = 0.6;
+
+    // autoplay (allowed because user clicked candle)
+    song.play().catch(() => {
+      console.log("Autoplay blocked, waiting for interaction");
+    });
+  });
+</script>
 
 </body>
 </html>
