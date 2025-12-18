@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wish For You 💖</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
+  body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("Images/f.jpg") center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  font-family:'Poppins', sans-serif;
+}
+
+  /* 🌸 Overlay */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  /* 💖 Popup Card */
+  .popup{
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 40px 35px;
+    width: 90%;
+    max-width: 420px;
+    text-align:center;
+    box-shadow:
+      0 0 20px rgba(255,255,255,0.6),
+      0 0 40px rgba(5, 13, 238, 0.6);
+    animation: pop 0.9s ease;
+  }
+
+  @keyframes pop{
+    from{transform:scale(0.6); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+  }
+
+  .popup h1{
+    font-family:'Great Vibes', cursive;
+    font-size:3rem;
+    color:white;
+    margin-bottom:15px;
+    text-shadow:
+      0 0 6px #fff,
+      0 0 14px rgb(9, 27, 226);
+  }
+
+  .popup p{
+    color:#fff;
+    font-size:1.05rem;
+    line-height:1.7;
+    margin-bottom:25px;
+  }
+
+  .popup button{
+    border:none;
+    padding:12px 28px;
+    border-radius:30px;
+    font-size:1rem;
+    cursor:pointer;
+    background:#ff0457;
+    color:white;
+    transition:0.3s;
+  }
+
+  .popup button:hover{
+    background:#e80550;
+  }
+  .heart{
+  position: absolute;
+  color: rgba(255,255,255,0.6);
+  font-size: 18px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(-10vh) scale(1.3);
+    opacity: 1;
+  }
+}
+.popup button{
+  animation: pulseBtn 1.6s infinite;
+}
+
+@keyframes pulseBtn{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+#foreverBtn{
+  display: none;
+  margin-top: 15px;
+  animation: pulseBtn 1.6s infinite;
+}
+/* 💌 Heart Burst */
+/* 💖 Full Screen Heart Burst */
+.burst-heart{
+  position: fixed;
+  font-size: 22px;
+  pointer-events: none;
+  animation: burstFly 2.2s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes burstFly{
+  0%{
+    transform: translate(0,0) scale(0.6);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(var(--x), var(--y)) scale(1.6);
+    opacity: 0;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <div class="popup">
+    <h1>Dear Nandu 💖</h1>
+    <p id="wishText"></p>
+
+    <button id="foreverBtn" onclick="goToGallery()">💗 Forever Us 💗</button>
+
+  </div>
+</div>
+
+<script>
+  const message = "🎀  𝒟𝐸𝒜𝑅 𝒩𝒜𝒩𝒟𝒰  🎀 On your special day, I wish you endless happiness, beautiful smiles, and dreams that come true. May your life always glow like this moment. ✨🎂";
+  const wishText = document.getElementById("wishText");
+  const foreverBtn = document.getElementById("foreverBtn");
+  let i = 0;
+
+function heartBurst(){
+    const btn = document.getElementById("foreverBtn");
+    const rect = btn.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const totalHearts = 40; // 💖 amount (increase if you want more)
+
+    for(let i = 0; i < totalHearts; i++){
+      const heart = document.createElement("div");
+      heart.className = "burst-heart";
+      heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
+
+      heart.style.left = centerX + "px";
+      heart.style.top = centerY + "px";
+
+      // full-screen random directions
+      const x = (Math.random() - 0.5) * window.innerWidth;
+      const y = (Math.random() - 0.5) * window.innerHeight;
+
+      heart.style.setProperty("--x", x + "px");
+      heart.style.setProperty("--y", y + "px");
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 2200);
+    }
+  }
+
+  function typeWish(){
+    if(i < message.length){
+      wishText.textContent += message.charAt(i);
+      i++;
+      setTimeout(typeWish, 40);
+    } else {
+      // 💖 show button + heart burst
+      setTimeout(() => {
+        foreverBtn.style.display = "inline-block";
+        heartBurst();
+      }, 400);
+    }
+  }
+
+  // start typing after popup animation
+  setTimeout(typeWish, 900);
+</script>
+
+
+<script>
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+  }, 300);
+</script>
+<audio id="bgSong" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function goToGallery(){
+    window.location.href = "gallery.html?playSong=true";
+  }
+</script>
+
+
+</body>
+</html>

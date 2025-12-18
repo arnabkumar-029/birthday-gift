@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story 🎥</title>
+
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+  }
+
+  video{
+  max-width: 100%;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+  background: black;
+}
+
+
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+  }
+
+  h1{
+    font-size:2.8rem;
+    text-shadow:0 0 20px rgba(255,255,255,0.8);
+    margin-bottom:20px;
+  }
+
+  button{
+    padding:14px 32px;
+    border:none;
+    border-radius:30px;
+    font-size:1.1rem;
+    background:#ff2f92;
+    color:white;
+    cursor:pointer;
+    animation:pulse 1.5s infinite;
+  }
+
+  @keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+    100%{transform:scale(1)}
+  }
+.sound-btn{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 12px 22px;
+  background: rgba(255,47,146,0.9);
+  color: white;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  z-index: 10;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+.back-btn{
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: rgba(255,47,146,0.9);
+  color: white;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(255,47,146,0.7);
+  transition: 0.3s;
+}
+
+.back-btn:hover{
+  background: #ff2f92;
+  transform: scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<video id="loveVideo" loop playsinline controls>
+  <source src="video/love.mp4" type="video/mp4">
+</video>
+<button class="back-btn" onclick="back()">⬅ Back to Gallery</button>
+
+
+<script>
+  function back(){
+    window.location.href = "gallery.html";
+  }
+</script>
+<div class="sound-btn" onclick="enableSound()">🔊 Tap for Play</div>
+<script>
+  const video = document.getElementById("loveVideo");
+
+  function enableSound(){
+    video.muted = false;
+    video.volume = 1;
+    video.play();
+    document.querySelector(".sound-btn").style.display = "none";
+  }
+</script>
+
+</body>
+</html>

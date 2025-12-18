@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories Babe💖</title>
+
+<style>
+/* ===============================
+   🌸 BASE LAYOUT
+================================ */
+body{
+  margin:0;
+  min-height:100vh;
+
+  /* 🖼️ background image */
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.45)
+    ),
+    url("images/bgg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: 'Poppins', sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+
+h1{
+  color:#fff;
+  margin:20px 0;
+  text-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+/* ===============================
+   🖼️ GALLERY GRID
+================================ */
+.collage{
+  width:90%;
+  max-width:900px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+}
+
+.collage img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* hide images initially */
+#collage img{
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* image settles into grid */
+#collage img.show{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ✨ final glow after last image */
+.collage.final-glow img{
+  box-shadow:
+    0 0 15px rgba(255,255,255,0.6),
+    0 0 30px rgb(105, 255, 250),
+    0 0 60px rgb(4, 8, 238);
+}
+
+/* ===============================
+   💖 POPUP VIEWER
+================================ */
+.popup-viewer{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.popup-viewer.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-viewer img{
+  width: 70vw;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 183, 255, 0.952);
+}
+
+/* 🎥 replayable cinematic zoom */
+.zoom-animate{
+  animation: zoomOnce 1.8s ease;
+}
+
+@keyframes zoomOnce{
+  0%{
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  40%{
+    opacity: 1;
+  }
+  100%{
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   🎀 NEXT BUTTON
+================================ */
+.next-btn{
+  margin:30px 0;
+  padding:14px 36px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:#00b3ff;
+  color:white;
+  box-shadow:0 0 20px rgb(2, 67, 244);
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+/* 🎉 final celebration pop for all images */
+.collage.final-pop img{
+  animation: finalPop 0.8s ease-in-out 10;
+}
+
+@keyframes finalPop{
+  0%{
+    transform: scale(1);
+    opacity: 1;
+  }
+  50%{
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* 🎥 hide video button initially */
+.next-btn{
+  display: none;
+}
+
+/* 🌸 Romantic Start Overlay – FINAL */
+/* 🌸 Romantic Start Overlay with Image Background */
+#startOverlay{
+  position: fixed;
+  inset: 0;
+  background: 
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("Images/lo.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+.start-card{
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(14px);
+  padding: 45px 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.6),
+    0 0 60px rgba(255,0,120,0.6);
+  animation: fadeIn 1.2s ease;
+}
+
+.start-card h2{
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: #fff;
+  margin: 15px 0 25px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.heart-glow{
+  font-size: 3.2rem;
+  animation: heartBeat 1.5s infinite;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 25px #ff4d88,
+    0 0 40px #ff1e6b;
+}
+
+#startBtn{
+  padding: 16px 42px;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(135deg,#ff4d88,#ff1e6b);
+  color: #fff;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 15px rgba(255,77,136,.8),
+    0 0 35px rgba(255,30,107,.8);
+  animation: pulseGlow 1.8s infinite;
+}
+
+#startBtn:hover{
+  transform: scale(1.08);
+}
+
+.tap-note{
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+}
+
+@keyframes pulseGlow{
+  0%{transform: scale(1); box-shadow: 0 0 15px rgba(255,77,136,.6);}
+  50%{transform: scale(1.1); box-shadow: 0 0 35px rgba(255,30,107,1);}
+  100%{transform: scale(1);}
+}
+
+@keyframes heartBeat{
+  0%{transform: scale(1)}
+  50%{transform: scale(1.25)}
+  100%{transform: scale(1)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform: translateY(30px)}
+  to{opacity:1; transform: translateY(0)}
+}
+
+
+</style>
+
+
+</head>
+
+<body>
+
+<h1>(っ◔◡◔)っ ♥ 𝓞𝓾𝓻 𝓑𝓮𝓪𝓾𝓽𝓲𝓯𝓾𝓵 𝓜𝓮𝓶𝓸𝓻𝓲𝓮𝓼 𝓑𝓾𝓫𝓾 💕 ♥
+</h1>
+<div id="popupViewer" class="popup-viewer">
+  <img id="popupImg">
+</div>
+<div class="collage" id="collage">
+  <!-- 🔁 Replace with your photos -->
+  <img src="Images/p1.jpeg">
+  <img src="images/p2.jpeg">
+  <img src="images/p3.jpeg">
+  <img src="images/p4.jpeg">
+  <img src="images/p5.jpeg">
+  <img src="images/p6.jpeg">
+  <img src="Images/p7.jpeg">
+  <img src="images/p8.jpeg">
+  <img src="images/p9.jpeg">
+  <img src="images/p10.jpeg">
+</div>
+<button class="next-btn" onclick="goVideo()">🎥 Play Our Video Dudu Babe💖</button>
+<script>
+    function goVideo(){
+    window.location.href = "video.html"; }
+</script>
+
+<script>
+  const galleryImages = document.querySelectorAll("#collage img");
+  const popup = document.getElementById("popupViewer");
+  const popupImg = document.getElementById("popupImg");
+  const collage = document.getElementById("collage");
+
+  let index = 0;
+
+  function showNext(){
+    if(index >= galleryImages.length){
+  popup.classList.remove("show");
+  collage.classList.add("final-glow");
+  collage.classList.add("final-pop");
+
+  // 🎥 show existing video button AFTER last popup
+  const btn = document.querySelector(".next-btn");
+  btn.style.display = "block";
+  btn.style.opacity = "0";
+
+  // smooth fade-in
+  setTimeout(() => {
+    btn.style.opacity = "1";
+  }, 800);
+
+  return;
+}
+
+
+    // set image FIRST
+    popupImg.src = galleryImages[index].src;
+
+    // 🔁 force animation replay
+    popupImg.classList.remove("zoom-animate");
+    void popupImg.offsetWidth; // force reflow
+    popupImg.classList.add("zoom-animate");
+
+    popup.classList.add("show");
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+      galleryImages[index].classList.add("show");
+      index++;
+      setTimeout(showNext, 800);
+    }, 1800);
+  }
+
+</script>
+<audio id="gallerySong" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div id="startOverlay">
+  <div class="start-card">
+    <div class="heart-glow">💖</div>
+    <h2>For Us, Forever</h2>
+    <button id="startBtn">✨ Begin Our Story ✨</button>
+    <p class="tap-note">tap with love 💕</p>
+  </div>
+</div>
+
+<script>
+  const song = document.getElementById("gallerySong");
+  const startBtn = document.getElementById("startBtn");
+  const overlay = document.getElementById("startOverlay");
+
+  let started = false;
+
+  startBtn.addEventListener("click", () => {
+    if(started) return;
+    started = true;
+
+    // 🎵 start music
+    song.volume = 0.5;
+    song.play().catch(()=>{});
+
+    // 🎬 hide start screen
+    overlay.style.display = "none";
+
+    // 🖼 start gallery animation
+    showNext();
+  });
+</script>
+</body>
+</html>
