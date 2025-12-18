@@ -16,8 +16,17 @@
       }
 
       body {
-        background: #ee9ca7;
-      }
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  /* 🌸 YOUR CUSTOM BACKGROUND */
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("Images/birthday.webp") center / cover no-repeat;
+}
+
 
       .name{
         font-size: 1.1rem;
@@ -150,19 +159,20 @@ svg#cake {
 @keyframes glassGlow{
   from{
     text-shadow:
-      0 0 1px #fff,
-      0 0 4px rgba(255,255,255,0.7),
-      0 0 8px rgba(255,182,193,0.8),
-      0 0 14px rgba(255,105,180,0.6);
+      0 0 2px #fff,
+      0 0 6px rgba(180,220,255,0.6),
+      0 0 14px rgba(90,170,255,0.8),
+      0 0 24px rgba(30,120,255,0.7);
   }
   to{
     text-shadow:
-      0 0 2px #fff,
-      0 0 6px rgba(255,255,255,0.9),
-      0 0 12px rgba(255,182,193,0.9),
-      0 0 20px rgba(255,105,180,0.8);
+      0 0 3px #fff,
+      0 0 10px rgba(180,220,255,0.8),
+      0 0 22px rgba(90,170,255,0.95),
+      0 0 36px rgba(30,120,255,0.9);
   }
 }
+
 
 /* NAME – glass badge */
 .text .name{
@@ -177,8 +187,9 @@ svg#cake {
   background: rgba(255,255,255,0.18);
   backdrop-filter: blur(6px);
   box-shadow:
-    0 0 8px rgba(255,255,255,0.6),
-    0 0 18px rgba(255,182,193,0.6);
+  0 0 10px rgba(200,230,255,0.7),
+  0 0 26px rgba(80,160,255,0.85);
+
 }
 /* Flame off */
 .fuego.off {
@@ -199,9 +210,10 @@ svg#cake {
   opacity: 0;
   transition: all 1s ease;
   text-shadow:
-    0 0 6px #fff,
-    0 0 14px hotpink,
-    0 0 25px deeppink;
+  0 0 6px #fff,
+  0 0 18px #6fb3ff,
+  0 0 32px #2f7fff;
+
 }
 
 #wishMsg.show{
@@ -252,32 +264,35 @@ svg#cake{
   text-align: center;
   animation: glowPulse 1.8s ease-in-out infinite;
   text-shadow:
-    0 0 8px #fff,
-    0 0 18px hotpink,
-    0 0 35px deeppink,
-    0 0 55px rgba(255,105,180,0.9);
+  0 0 8px #fff,
+  0 0 20px #7bbcff,
+  0 0 40px #3a8dff,
+  0 0 65px rgba(80,160,255,0.95);
+
 }
 
 /* 💓 Glow pulse animation */
+/* 💙 Glow pulse animation (BLUE) */
 @keyframes glowPulse{
   0%{
     transform: scale(1);
     text-shadow:
-      0 0 8px #fff,
-      0 0 18px hotpink,
-      0 0 35px deeppink;
+      0 0 8px #ffffff,
+      0 0 18px #7bbcff,
+      0 0 35px #3a8dff;
   }
   50%{
     transform: scale(1.08);
     text-shadow:
-      0 0 12px #fff,
-      0 0 28px hotpink,
-      0 0 55px deeppink;
+      0 0 12px #ffffff,
+      0 0 28px #7bbcff,
+      0 0 55px #3a8dff;
   }
   100%{
     transform: scale(1);
   }
 }
+
 
 /* 👉 Arrow pointing to candle */
 .side-arrow{
@@ -290,7 +305,8 @@ svg#cake{
   border-bottom: 5px solid #fff;
   transform: rotate(-45deg);
   animation: arrowBounce 1.4s infinite;
-  filter: drop-shadow(0 0 10px hotpink);
+  filter: drop-shadow(0 0 12px #5fa8ff);
+
 }
 
 /* ⬇️ Arrow bounce */
